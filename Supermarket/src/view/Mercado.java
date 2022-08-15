@@ -128,7 +128,7 @@ public class Mercado {
 					}else {
 						System.out.println("Por favor, aguarde enquanto fechamos o pedido.");
 						Utils.stop(3);
-						//Mercado.fechar();
+						Mercado.fechar();
 					}
 				}else {
 					System.out.println("Não há produtos com o código informado.");
@@ -155,7 +155,28 @@ public class Mercado {
 		Mercado.menu();
 	}
 	
-
+	public static void fechar() {
+		Double valor_total = 0.0;
+		
+		System.out.println("Produtos do carrinho: ");
+		System.out.println("=======================");
+		
+		for(Products p : Mercado.carrinho.keySet()) {
+			int qntd = Mercado.carrinho.get(p);
+			
+			valor_total += p.getPreco() * qntd;
+			
+			System.out.println(p);
+			System.out.println("Quantidade " + qntd);
+			System.out.println("=====================");
+			
+			System.out.println("Sua fatura é: " + Utils.numberToString(valor_total));
+			Mercado.carrinho.clear();
+			Utils.stop(3);
+			Mercado.menu();
+		}
+	}
+	
 	public static void main(String[] args) {
 		
 		produtos = new ArrayList<Products>();
@@ -164,5 +185,4 @@ public class Mercado {
 		Mercado.menu();
 		
 	}
-
 }
