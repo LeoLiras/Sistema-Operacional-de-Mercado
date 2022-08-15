@@ -74,7 +74,7 @@ public class Mercado {
 		
 		System.out.println("O produto " + produto.getNome() + " foi cadastrado com sucesso.");
 		
-		Utils.stop(2);
+		Utils.stop(1);
 		Mercado.menu();
 	}
 	
@@ -99,14 +99,19 @@ public class Mercado {
 			
 			for(Products p: produtos) {
 				System.out.println(p);
+				System.out.println("____________________________\n");
 			}
 			
+			System.out.println("Informe o código do produto desejado: ");
 			int codigo = Integer.parseInt(Mercado.teclado.nextLine());
+			
 			boolean tem_no_carrinho = false;
 			
 			for(Products p : produtos) {
+				
 				if(p.getCodigo() == codigo) {
 					int qntd = 0;
+					
 					try {
 						qntd = Mercado.carrinho.get(p);
 						Mercado.carrinho.put(p, ++qntd);
@@ -130,15 +135,13 @@ public class Mercado {
 						Utils.stop(3);
 						Mercado.fechar();
 					}
-				}else {
-					System.out.println("Não há produtos com o código informado.");
-					Utils.stop(2);
-					Mercado.menu();
 				}
 			}
 			
 		}else {
 			System.out.println("Não há produtos cadastrados.");
+			Utils.stop(2);
+			Mercado.menu();
 		}
 	}
 	
@@ -182,7 +185,6 @@ public class Mercado {
 		produtos = new ArrayList<Products>();
 		carrinho = new HashMap<Products, Integer>();
 		
-		Mercado.menu();
-		
+		Mercado.menu();	
 	}
 }
