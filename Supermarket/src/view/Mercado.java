@@ -61,11 +61,35 @@ public class Mercado {
 	}
 	
 	private static void cadastrar() {
+		System.out.println("Cadastrar Produto");
+		System.out.println("=================\n");
 		
+		System.out.println("Informe o nome do produto: ");
+		String nome = Mercado.teclado.nextLine();	
+		System.out.println("Informe o preço do produto: ");
+		Double preco = Mercado.teclado.nextDouble();
+		
+		Products produto = new Products(nome, preco);
+		Mercado.produtos.add(produto);
+		
+		System.out.println("O produto " + produto.getNome() + " foi cadastrado com sucesso.");
+		
+		Utils.stop(2);
+		Mercado.menu();
 	}
 	
 	private static void listar() {
+		if(Mercado.produtos.size() > 0) {
+			for(Products p : produtos) {
+				System.out.println(p);
+				System.out.println("\n");
+			}
+		}else {
+			System.out.println("Não há produtos cadastrados");
+		}
 		
+		Utils.stop(2);
+		Mercado.menu();
 	}
 	
 	private static void comprar() {
